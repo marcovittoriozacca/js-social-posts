@@ -5,7 +5,7 @@ const posts = [
         "media": "https://unsplash.it/600/300?image=171",
         "author": {
             "name": "Phil Mangione",
-            "image": "https://unsplash.it/300/300?image=15"
+            "image": "https://unsplash.it/300/300?image=15",
         },
         "likes": 80,
         "created": "2021-06-25"
@@ -62,7 +62,8 @@ posts.forEach(element => {
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic ${(element.author.image == null ? "no-pic-profile": "")} " src="${(element.author.image != null) ? `${element.author.image}` : "" }" alt="${element.author.name.match(/(\b\S)?/g).join("")}">                    
+                ${((element.author.image == null ? `<div class="no-img-container">${element.author.name.match(/(\b\S)?/g).join("")}</div>` : `<img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">`))}
+                    
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
