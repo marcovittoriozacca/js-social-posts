@@ -123,3 +123,19 @@ h1 {
 .like-button--liked {
     color: #0CD977;
 }
+
+
+.no-pic-profile::before{
+
+    border-radius: 50%;
+    padding: 10px 12px;
+    background-color: #0CD977;
+    
+    font-size: 2rem;
+}
+.no-pic-profile{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

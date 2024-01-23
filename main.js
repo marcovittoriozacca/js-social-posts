@@ -62,7 +62,7 @@ posts.forEach(element => {
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${(element.author.image != null) ? `${element.author.image}` : "" }" alt="${element.author.name.match(/(\b\S)?/g).join("")}">                    
+                    <img class="profile-pic ${(element.author.image == null ? "no-pic-profile": "")} " src="${(element.author.image != null) ? `${element.author.image}` : "" }" alt="${element.author.name.match(/(\b\S)?/g).join("")}">                    
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
