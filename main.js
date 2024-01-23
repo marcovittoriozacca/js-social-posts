@@ -16,7 +16,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=112",
         "author": {
             "name": "Sofia Perlari",
-            "image": "https://unsplash.it/300/300?image=10"
+            "image": "https://unsplash.it/300/300?image=10",
         },
         "likes": 120,
         "created": "2021-09-03"
@@ -55,3 +55,60 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+const container = document.getElementById('container')
+posts.forEach(element => {
+    container.innerHTML += `
+    <div class="post">
+        <div class="post__header">
+            <div class="post-meta">                    
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src="${(element.author.image != null) ? `${element.author.image}` : "" }" alt="${element.author.name.match(/(\b\S)?/g).join("")}">                    
+                </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${element.author.name}</div>
+                    <div class="post-meta__time">${element.created}</div>
+                </div>                    
+            </div>
+        </div>
+        <div class="post__text">${element.content}</div>
+        <div class="post__image">
+            <img src="${element.media}" alt="">
+        </div>
+        <div class="post__footer">
+            <div class="likes js-likes">
+                <div class="likes__cta">
+                    <span class="like-button  js-like-button" href="#" data-postid="${element.id}">
+                        <i class="like-button__icon fas fa-thumbs-up"></i>
+                        <span class="like-button__label">Mi Piace</span>
+                    </span>
+                </div>
+                <div class="likes__counter">
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
+                </div>
+            </div> 
+        </div>            
+    </div>`
+});
+
+const likesBtn = document.querySelectorAll('.like-button');
+const likeCounter = document.querySelectorAll('.likes__counter');
+let flag = false;
+
+likesBtn.forEach((element, index) => {
+
+    element.addEventListener('click', function(){
+        if(!flag){
+            element.classList.add('like-button--liked');
+            likeCounter[index].innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${posts[index].likes + 1}</b> persone`
+            
+            flag = true;
+            
+        }else{
+            element.classList.remove('like-button--liked');
+            likeCounter[index].innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${posts[index].likes}</b> persone`
+            
+            flag = false;
+        }
+    })
+
+})
