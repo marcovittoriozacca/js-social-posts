@@ -66,7 +66,7 @@ posts.forEach(element => {
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
-                    <div class="post-meta__time">${element.created}</div>
+                    <div class="post-meta__time">${localDate(element.created)}</div>
                 </div>                    
             </div>
         </div>
@@ -113,3 +113,18 @@ likesBtn.forEach((element, index) => {
         console.log(likedPosts)
     })
 })
+
+
+function localDate(element){
+    let date = new Date(element)
+    let giorno = date.getDate()
+    if(giorno < 10){
+        giorno = '0'+giorno;
+    }
+    let mese = date.getMonth()+1
+    if(mese < 10){
+        mese = '0'+mese
+    }
+    let anno = date.getFullYear();
+    return `${giorno}-${mese}-${anno}`
+}
