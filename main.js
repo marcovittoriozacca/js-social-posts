@@ -62,8 +62,7 @@ posts.forEach(element => {
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                ${((element.author.image == null ? `<div class="no-img-container">${element.author.name.match(/(\b\S)?/g).join("")}</div>` : `<img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">`))}
-                    
+                ${((element.author.image == null ? `<div class="profile-pic-default"><span>${element.author.name.match(/(\b\S)?/g).join("")}</span></div>` : `<img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">`))}
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
@@ -84,7 +83,7 @@ posts.forEach(element => {
                     </span>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
+                    Piace a <b id="like-counter-${element.id}" class="js-likes-counter">${element.likes}</b> persone
                 </div>
             </div> 
         </div>            
@@ -92,7 +91,7 @@ posts.forEach(element => {
 });
 
 const likesBtn = document.querySelectorAll('.like-button');
-const likeCounter = document.querySelectorAll('.likes__counter');
+const likeCounter = document.querySelectorAll('.js-likes-counter');
 const likedPosts = [];
 
 likesBtn.forEach((element, index) => {
@@ -100,14 +99,16 @@ likesBtn.forEach((element, index) => {
     element.addEventListener('click', function(){
         element.classList.toggle('like-button--liked');
         if(element.classList.contains('like-button--liked')){
-            likeCounter[index].innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${posts[index].likes + 1}</b> persone`
+            posts[index].likes++
+            likeCounter[index].innerHTML = `${posts[index].likes}`
     
             if(!likedPosts.includes(posts[index].id)){
                 likedPosts.push(posts[index].id)   
             }
 
         }else{
-            likeCounter[index].innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${posts[index].likes}</b> persone`
+            posts[index].likes--
+            likeCounter[index].innerHTML = `${posts[index].likes}`
             let indice = (likedPosts.indexOf(posts[index].id));
             likedPosts.splice(indice,1)
         }

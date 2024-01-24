@@ -123,14 +123,3 @@ h1 {
 .like-button--liked {
     color: #0CD977;
 }
-
-.no-img-container{
-    font-size: 1.5rem;
-    width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #0CD977;
-    border-radius: 50%;
-    aspect-ratio: 1;
-}
